@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jimmy · Sessions 1–5 Assessment</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Patrick+Hand&display=swap');
+:root{
+  --navy:#12375b;--sky:#dff3fb;--mint:#e7f5ef;--yellow:#ffd85a;--orange:#f4a259;
+  --teal:#2aa79b;--purple:#8566c5;--pink:#df6c91;--paper:#fffdf8;--ink:#17324d;
+  --muted:#617487;--line:#dce7ec;--good:#2f9e69;--bad:#d75d5d;--softbad:#fff0f0;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Nunito,Arial,sans-serif;background:#f5f2ea;color:var(--ink);line-height:1.55}
+.wrap{max-width:1100px;margin:auto}.nav{position:sticky;top:0;z-index:20;background:rgba(255,253,248,.96);backdrop-filter:blur(10px);border-bottom:1px solid #e7e2d8}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:12px 22px}.brand{font-weight:900}.brand span{font-family:'Patrick Hand';font-size:25px}
+.links{display:flex;gap:8px;flex-wrap:wrap}.links a{text-decoration:none;color:var(--navy);font-size:13px;font-weight:800;padding:7px 10px;border-radius:20px}.links a:hover{background:var(--sky)}
+.hero{padding:66px 24px 46px;background:linear-gradient(135deg,#fffdf8 57%,#dff3fb 57%)}.hero-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:36px;align-items:center}
+.eyebrow{font-weight:900;letter-spacing:1.4px;font-size:12px;text-transform:uppercase}.hero h1{font-family:'Patrick Hand';font-size:68px;line-height:.92;margin:10px 0;color:var(--navy)}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 72%,var(--yellow) 72%)}.hero p{font-size:19px;max-width:670px}.note{background:var(--yellow);padding:25px;transform:rotate(2deg);box-shadow:0 14px 28px #12375b1c;font-family:'Patrick Hand';font-size:28px;text-align:center;border-radius:5px}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.chip{padding:9px 14px;background:#fff;border:2px solid var(--navy);border-radius:30px;font-weight:800;font-size:13px}
+section{padding:58px 24px}.section-title{font-family:'Patrick Hand';font-size:46px;margin:0 0 8px}.underline{width:130px;height:6px;background:var(--yellow);border-radius:10px;margin-bottom:24px}.lead{font-size:17px;max-width:850px}
+.info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:25px}.info{background:#fff;border-radius:20px;padding:20px;box-shadow:0 6px 18px #17324d0c}.info:nth-child(odd){background:var(--sky)}.info:nth-child(even){background:var(--mint)}.info strong{font-family:'Patrick Hand';font-size:28px;display:block}
+.progress-shell{position:sticky;top:53px;z-index:18;background:rgba(255,253,248,.96);border-bottom:1px solid #ece5d9;box-shadow:0 5px 18px #17324d0a}.progress-inner{max-width:1100px;margin:auto;padding:9px 24px}.track{height:8px;background:#e7eef2;border-radius:999px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--navy),var(--teal),var(--yellow));transition:.25s}
+.assess-grid{display:grid;grid-template-columns:260px minmax(0,1fr);gap:20px;align-items:start}.side{position:sticky;top:95px;background:#eef7fa;border-radius:24px;padding:12px}.side button{width:100%;border:0;background:transparent;text-align:left;padding:12px;border-radius:15px;font-family:inherit;font-weight:800;color:var(--ink);cursor:pointer}.side button.active,.side button:hover{background:#fff;box-shadow:0 5px 14px #17324d10}.side small{display:block;color:var(--muted);font-weight:700}
+.panel{display:none}.panel.active{display:block}.qcard{background:#fff;border-radius:24px;padding:24px;margin-bottom:16px;box-shadow:0 8px 24px #17324d0d;border:1px solid #edf2f4}.qhead{display:flex;gap:12px;align-items:flex-start}.qnum{flex:0 0 40px;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-weight:900}.qcard h3{margin:2px 0 12px;font-size:18px}.options{display:grid;gap:9px;margin-top:12px}.option{border:2px solid #e5edf1;border-radius:14px;padding:11px 13px;background:#fff;cursor:pointer;font-weight:700;display:flex;gap:10px;align-items:center}.option:hover{border-color:#b9dbe8;background:#f8fcfe}.option.selected{border-color:var(--teal);background:#effaf7}.option.correct{border-color:var(--good);background:#eef9f3}.option.wrong{border-color:var(--bad);background:var(--softbad)}.option.locked{pointer-events:none;cursor:default;opacity:.72}.option.selected.locked{opacity:1}.pass-btn{margin-top:14px;margin-left:8px;border:2px solid #d9e3e8;background:#fff;color:var(--muted);padding:8px 15px;border-radius:24px;font-weight:900;cursor:pointer}.pass-btn:hover{background:#f7fafb;border-color:#b8c9d1}.pass-btn:disabled{opacity:.45;cursor:not-allowed}.feedback.pass{background:#f4f5f7;border-left:5px solid #8b98a3}
+.validate{margin-top:14px;border:0;background:var(--navy);color:#fff;padding:10px 17px;border-radius:24px;font-weight:900;cursor:pointer}.validate:disabled{opacity:.45;cursor:not-allowed}.feedback{display:none;margin-top:12px;padding:12px 14px;border-radius:14px;font-size:14px}.feedback.show{display:block}.feedback.good{background:#eef9f3;border-left:5px solid var(--good)}.feedback.bad{background:#fff0f0;border-left:5px solid var(--bad)}
+.reading{background:linear-gradient(135deg,#eef8fd,#fff);border-radius:24px;padding:24px;margin-bottom:18px;border:1px solid #e2edf2}.reading h3{font-family:'Patrick Hand';font-size:31px;margin:0 0 12px}.reading p{font-size:15px}.short-answer{width:100%;min-height:90px;border:2px solid #dce7ec;border-radius:14px;padding:12px;font:inherit;resize:vertical}.teacher-note{margin-top:9px;font-size:12px;color:var(--muted)}
+.summary-box{background:#fff;border-radius:28px;padding:28px;box-shadow:0 10px 30px #17324d10}.score-big{font-family:'Patrick Hand';font-size:64px;line-height:1;margin:6px 0}.bands{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.band{padding:16px;border-radius:18px;background:var(--sky)}.band:nth-child(2){background:var(--mint)}.band:nth-child(3){background:#fff3bf}.band b{display:block;margin-bottom:5px}.feedback-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.feedback-card{padding:18px;border-radius:18px;background:#fff;border:1px solid var(--line)}.feedback-card h4{margin:0 0 8px}.tag{display:inline-block;padding:5px 9px;border-radius:15px;background:#eef5f8;font-size:11px;font-weight:900;margin:3px}
+.discussion-card{background:#fff;border-radius:22px;padding:22px;margin:14px 0;box-shadow:0 7px 20px #17324d0b}.discussion-card h3{margin:0 0 6px}.prompt{font-size:18px;font-weight:900;color:var(--navy);margin:8px 0}.follow{background:var(--sky);border-radius:14px;padding:12px 14px;margin-top:10px}.rubric{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}.rubric select{width:100%;padding:9px;border-radius:12px;border:1px solid var(--line);font:inherit}.rubric label{font-size:11px;font-weight:900;color:var(--muted);display:block;margin-bottom:4px}.discussion-summary{margin-top:18px;padding:18px;border-radius:20px;background:var(--mint)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.btn{border:0;border-radius:24px;padding:11px 17px;font-weight:900;cursor:pointer;font-family:inherit}.btn.primary{background:var(--navy);color:#fff}.btn.secondary{background:var(--yellow);color:var(--navy)}.btn.ghost{background:#eef4f7;color:var(--navy)}
+.footer{background:var(--navy);color:#fff;padding:34px 24px;text-align:center}.footer strong{font-family:'Patrick Hand';font-size:32px}.muted{color:var(--muted)}
+@media(max-width:850px){.hero-grid,.assess-grid,.feedback-grid{grid-template-columns:1fr}.side{position:static}.info-grid,.bands{grid-template-columns:1fr 1fr}.rubric{grid-template-columns:1fr 1fr}.links{display:none}.hero h1{font-size:54px}}
+@media(max-width:520px){.info-grid,.bands,.rubric{grid-template-columns:1fr}.hero h1{font-size:46px}.qcard{padding:18px}}
+
+
+.download-card{background:linear-gradient(135deg,var(--sky),#fff8d9);border:1px solid var(--line);border-radius:22px;padding:18px 20px;margin-top:18px}
+.download-card h3{margin:0 0 6px;color:var(--navy)}
+.session-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}
+.session-chip{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;text-align:center;font-weight:900;font-size:12px}
+.session-chip b{display:block;font-size:20px;color:var(--blue)}
+.result-table{width:100%;border-collapse:collapse;margin-top:14px;background:#fff;border-radius:16px;overflow:hidden}
+.result-table th,.result-table td{padding:10px;border:1px solid var(--line);text-align:left;font-size:13px}
+.result-table th{background:var(--sky);font-weight:900}
+.print-note{font-size:12px;color:var(--muted);margin-top:7px}
+.btn.download{background:var(--teal);color:#fff}
+.btn.print{background:var(--blue);color:#fff}
+@media(max-width:850px){.session-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.session-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<nav class="nav"><div class="wrap">
+  <div class="brand"><span>English with Mr. Rengifo</span> · Progress Assessment</div>
+  <div class="links">
+    <a href="#intro">Inicio</a><a href="#assessment">Assessment</a>
+    <a href="#results">Resultados</a><a href="#discussion">Speaking</a>
+  </div>
+</div></nav>
+
+<div class="progress-shell"><div class="progress-inner"><div class="track"><div class="fill" id="globalFill"></div></div></div></div>
+
+<header class="hero" id="intro">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Jimmy · Sessions 1–5 Progress Check</div>
+      <h1>Let’s see what<br/><em>you can do now.</em></h1>
+      <p>Un assessment de progreso para revisar el grammar y Mining English trabajado desde la Sesión 1 hasta la Sesión 5. No hay cronómetro: la prioridad es observar lo que Jimmy ya controla y lo que todavía necesita reforzar.</p>
+      <div class="chips">
+        <span class="chip">Sessions 1–5</span><span class="chip">Grammar</span>
+        <span class="chip">Mining English</span><span class="chip">Speaking review</span>
+      </div>
+    </div>
+    <div class="note">No timer.<br/>No pressure.<br/><b>Show your progress.</b></div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2 class="section-title">¿Cómo usaremos este recurso?</h2><div class="underline"></div>
+    <p class="lead">Jimmy puede responder directamente en pantalla. Cada respuesta se bloquea después del primer intento y recibe feedback inmediato. Al finalizar, el recurso muestra el resultado general, el rendimiento por sesión y las áreas que conviene revisar.</p>
+    <div class="info-grid">
+      <div class="info"><strong>15</strong>Grammar questions</div>
+      <div class="info"><strong>10</strong>Mining English</div>
+      <div class="info"><strong>25 pts</strong>Resultado total</div>
+      <div class="info"><strong>5</strong>Speaking prompts</div>
+    </div>
+    <div class="session-grid">
+      <div class="session-chip"><b>1</b>Introducing yourself</div>
+      <div class="session-chip"><b>2</b>Getting to know others</div>
+      <div class="session-chip"><b>3</b>Everyday objects</div>
+      <div class="session-chip"><b>4</b>Family & belongings</div>
+      <div class="session-chip"><b>5</b>Things you do</div>
+    </div>
+    <div class="download-card">
+      <h3>Printable version</h3>
+      <p>Descarga el mismo set de 25 preguntas en PDF, sin respuestas ni feedback, listo para imprimir y resolver a mano.</p>
+      <div class="actions">
+        <button class="btn download" id="downloadPrintable">Download printable PDF</button>
+        <button class="btn print" id="printPrintable">Open printable PDF</button>
+      </div>
+      <div class="print-note">La versión descargable incluye espacio para nombre, fecha y respuestas.</div>
+    </div>
+  </div>
+</section>
+
+<section id="assessment" style="background:#fff">
+<div class="wrap">
+<h2 class="section-title">Assessment</h2><div class="underline"></div>
+<div class="assess-grid">
+<aside class="side">
+  <button class="active" data-panel="grammar">Grammar <small>15 preguntas</small></button>
+  <button data-panel="mining">Mining English <small>10 preguntas</small></button>
+  <button data-panel="results">Results <small>Feedback general</small></button>
+  <button data-panel="discussion">Speaking Check <small>5 prompts</small></button>
+</aside>
+<main>
+  <div class="panel active" id="panel-grammar">
+    <div id="grammarQuestions"></div>
+    <div class="actions"><button class="btn secondary" onclick="showPanel('mining')">Go to Mining English →</button></div>
+  </div>
+
+  <div class="panel" id="panel-mining">
+    <div id="miningQuestions"></div>
+    <div class="actions"><button class="btn primary" onclick="calculateResults();showPanel('results')">See Results →</button></div>
+  </div>
+
+  <div class="panel" id="panel-results">
+    <div class="summary-box" id="results">
+      <div class="eyebrow">Sessions 1–5 assessment</div>
+      <div class="score-big"><span id="scoreNow">0</span>/25</div>
+      <div id="percentNow" style="font-weight:900;font-size:20px">0%</div>
+      <div class="bands">
+        <div class="band"><b>85–100%</b>Muy buen control de lo trabajado.</div>
+        <div class="band"><b>70–84%</b>Buen progreso con algunos puntos por consolidar.</div>
+        <div class="band"><b>&lt;70%</b>Conviene reforzar contenidos antes de avanzar demasiado.</div>
+      </div>
+      <div id="generalFeedback"></div>
+      <div class="actions">
+        <button class="btn secondary" onclick="showPanel('discussion')">Continue to Speaking →</button>
+        <button class="btn download" id="downloadPrintableResults">Download printable PDF</button>
+        <button class="btn ghost" onclick="resetAssessment()">Reset assessment</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-discussion">
+    <div id="discussion">
+      <p class="lead">Esta parte no asigna un nivel oficial. Sirve para observar si Jimmy puede reutilizar oralmente el grammar y Mining English de las cinco sesiones con menos apoyo.</p>
+      <div id="discussionCards"></div>
+      <div class="discussion-summary"><b>Teacher snapshot</b><p id="speakingSnapshot">Completa las escalas de los prompts para generar una lectura rápida.</p></div>
+    </div>
+  </div>
+</main>
+</div>
+</div>
+</section>
+
+<footer class="footer"><strong>English with Mr. Rengifo</strong><div>Progress you can see.</div></footer>
+
+<script>
+const grammar = [{"session": 1, "cat": "Verb be · I", "q": "I ___ from Peru.", "o": ["am", "is", "are", "be"], "a": 0, "f": "Use am with I: I am from Peru."}, {"session": 1, "cat": "Verb be · she", "q": "She ___ an engineer.", "o": ["am", "is", "are", "be"], "a": 1, "f": "Use is with she: She is an engineer."}, {"session": 1, "cat": "Verb be · he", "q": "He ___ at a mine.", "o": ["am", "is", "are", "be"], "a": 1, "f": "Use is with he: He is at a mine."}, {"session": 2, "cat": "Verb be · we", "q": "We ___ from Peru.", "o": ["am", "is", "are", "be"], "a": 2, "f": "Use are with we: We are from Peru."}, {"session": 2, "cat": "Wh-question", "q": "Where ___ you from?", "o": ["am", "is", "are", "do"], "a": 2, "f": "With you and verb be, use are: Where are you from?"}, {"session": 2, "cat": "How question", "q": "___ old are you?", "o": ["What", "Where", "How", "Who"], "a": 2, "f": "The fixed question is: How old are you?"}, {"session": 3, "cat": "A / An", "q": "Choose the correct form: ___ umbrella.", "o": ["a", "an", "the", "one"], "a": 1, "f": "Use an before the vowel sound in umbrella."}, {"session": 3, "cat": "Plural nouns", "q": "One box → two ___.", "o": ["boxs", "boxes", "box", "boxies"], "a": 1, "f": "Nouns ending in -x usually add -es: boxes."}, {"session": 3, "cat": "Demonstratives", "q": "The gloves are near you. ___ are my gloves.", "o": ["This", "That", "These", "Those"], "a": 2, "f": "Use these for plural things that are near."}, {"session": 4, "cat": "Possessive adjective", "q": "I have a helmet. This is ___ helmet.", "o": ["my", "mine", "his", "her"], "a": 0, "f": "Use my before a noun: my helmet."}, {"session": 4, "cat": "Possessive pronoun", "q": "This helmet belongs to me. It is ___.", "o": ["my", "mine", "your", "his"], "a": 1, "f": "Use mine without a noun: It is mine."}, {"session": 4, "cat": "Possessive ’s", "q": "These are ___ gloves. (Sarah)", "o": ["Sarah", "Sarahs", "Sarah's", "Sarah is"], "a": 2, "f": "Use possessive ’s after a person’s name: Sarah’s gloves."}, {"session": 5, "cat": "Simple Present", "q": "I ___ the equipment every day.", "o": ["check", "checks", "checking", "am check"], "a": 0, "f": "With I, use the base form: I check the equipment."}, {"session": 5, "cat": "Negative Simple Present", "q": "I ___ use a radio at work.", "o": ["doesn't", "don't", "am not", "not"], "a": 1, "f": "With I, use don’t + base verb: I don’t use a radio."}, {"session": 5, "cat": "Do questions", "q": "___ you inspect the area?", "o": ["Are", "Do", "Does", "Is"], "a": 1, "f": "With you in Simple Present questions, use Do: Do you inspect the area?"}];
+const mining = [{"session": 1, "cat": "Mining English · Industry", "q": "Which sentence is natural?", "o": ["I work in mining.", "I mining work.", "I am mine.", "I work mining in."], "a": 0, "f": "The natural expression is: I work in mining."}, {"session": 1, "cat": "Mining English · Workplace", "q": "Complete the sentence: I work at a ___.", "o": ["mine", "mining", "department", "shift"], "a": 0, "f": "A mine is a place where mining work happens: I work at a mine."}, {"session": 2, "cat": "Mining English · Shift", "q": "Which question asks about a person’s work schedule?", "o": ["Where are you from?", "What shift are you on?", "How old are you?", "What's your nationality?"], "a": 1, "f": "What shift are you on? asks about the person’s work shift."}, {"session": 2, "cat": "Mining English · Work information", "q": "Which question asks about the workplace?", "o": ["Where do you work?", "How do you spell it?", "What nationality are you?", "How old are you?"], "a": 0, "f": "Where do you work? asks for the person’s work location."}, {"session": 3, "cat": "Mining English · Location", "q": "The radio is ___ the table.", "o": ["in", "on", "under", "from"], "a": 1, "f": "Use on when an object is resting on a surface: on the table."}, {"session": 3, "cat": "Mining English · PPE", "q": "Which word is a piece of head protection?", "o": ["helmet", "radio", "locker", "shift"], "a": 0, "f": "A helmet protects the head and is part of PPE."}, {"session": 4, "cat": "Mining English · Ownership", "q": "Whose gloves are these? They belong to him. They are ___.", "o": ["his", "her", "hers", "mine"], "a": 0, "f": "His can be used as a possessive pronoun: They are his."}, {"session": 4, "cat": "Mining English · Ownership", "q": "That radio belongs to her. The radio is ___.", "o": ["her", "hers", "his", "their"], "a": 1, "f": "Use hers without a noun: The radio is hers."}, {"session": 5, "cat": "Mining English · PPE", "q": "I ___ PPE at work.", "o": ["wear", "use", "report", "inspect"], "a": 0, "f": "Wear is the natural verb with PPE: I wear PPE."}, {"session": 5, "cat": "Mining English · Work actions", "q": "I ___ problems to my supervisor.", "o": ["wear", "report", "start", "use"], "a": 1, "f": "Report problems is a useful work collocation."}];
+const discussion = [{"t": "Session 1 · Introduction", "p": "Introduce yourself and say where you work.", "f": ["Use: My name is…", "Use one mining sentence."]}, {"t": "Session 2 · Work information", "p": "Answer: Where do you work? What shift are you on?", "f": ["Try full answers.", "Add your department if possible."]}, {"t": "Session 3 · Objects", "p": "Name three work objects and say where one of them is.", "f": ["Use this/these if possible.", "Use in, on or under."]}, {"t": "Session 4 · Ownership", "p": "Choose two work objects and say who they belong to.", "f": ["Use my/mine or his/hers.", "Ask one Whose…? question."]}, {"t": "Session 5 · Work actions", "p": "Say three things you do at work and one thing you don’t do.", "f": ["Use check, inspect, use, wear or report.", "Ask one Do you…? question."]}];
+let state={g:{},m:{}};
+
+function showPanel(name){
+  document.querySelectorAll('.side button').forEach(b=>b.classList.toggle('active',b.dataset.panel===name));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  if(name==='results') calculateResults();
+  document.getElementById('assessment').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+document.querySelectorAll('.side button').forEach(b=>b.addEventListener('click',()=>showPanel(b.dataset.panel)));
+
+function makeQuestions(arr,hostId,key){
+  const host=document.getElementById(hostId);host.innerHTML='';
+  arr.forEach((x,i)=>{
+    const el=document.createElement('div');el.className='qcard';
+    el.innerHTML=`<div class="qtop"><span class="qnum">${i+1}</span><span class="qcat">Session ${x.session} · ${x.cat}</span></div>
+      <div class="question">${x.q}</div>
+      <div class="options">${x.o.map((o,j)=>`<button class="option" data-j="${j}">${String.fromCharCode(65+j)}. ${o}</button>`).join('')}</div>
+      <div class="feedback" aria-live="polite"></div>`;
+    const buttons=[...el.querySelectorAll('.option')],fb=el.querySelector('.feedback');
+    buttons.forEach(btn=>btn.addEventListener('click',()=>{
+      if(state[key][i]?.done)return;
+      const chosen=Number(btn.dataset.j),correct=chosen===x.a;
+      state[key][i]={done:true,correct,chosen};
+      buttons.forEach((b,j)=>{
+        b.disabled=true;
+        if(j===x.a)b.classList.add('correct');
+        else if(j===chosen)b.classList.add('wrong');
+      });
+      fb.className='feedback show '+(correct?'ok':'no');
+      fb.innerHTML=`<b>${correct?'Correct!':'Review this.'}</b> ${x.f}`;
+      updateProgress();
+    }));
+    host.appendChild(el);
+  });
+}
+
+function updateProgress(){
+  const done=Object.values(state.g).filter(x=>x.done).length+Object.values(state.m).filter(x=>x.done).length;
+  document.getElementById('globalFill').style.width=(done/25*100)+'%';
+}
+
+function calculateResults(){
+  const all=[...grammar.map((x,i)=>({x,s:state.g[i]})),...mining.map((x,i)=>({x,s:state.m[i]}))];
+  const done=all.filter(v=>v.s&&v.s.done);
+  const score=done.filter(v=>v.s.correct).length;
+  const pct=Math.round(score/25*100);
+  document.getElementById('scoreNow').textContent=score;
+  document.getElementById('percentNow').textContent=pct+'%';
+
+  const sessions={};
+  for(let n=1;n<=5;n++)sessions[n]={ok:0,n:0};
+  all.forEach(v=>{
+    if(v.s&&v.s.done){
+      sessions[v.x.session].n++;
+      if(v.s.correct)sessions[v.x.session].ok++;
+    }
+  });
+
+  const gDone=grammar.map((x,i)=>state.g[i]).filter(Boolean);
+  const mDone=mining.map((x,i)=>state.m[i]).filter(Boolean);
+  const gScore=gDone.filter(x=>x.correct).length;
+  const mScore=mDone.filter(x=>x.correct).length;
+  const gPct=Math.round(gScore/15*100);
+  const mPct=Math.round(mScore/10*100);
+
+  const rows=Object.entries(sessions).map(([s,v])=>{
+    const p=v.n?Math.round(v.ok/v.n*100):0;
+    return `<tr><td>Session ${s}</td><td>${v.ok} / ${v.n||5}</td><td>${v.n?p+'%':'—'}</td></tr>`;
+  }).join('');
+
+  let msg = pct>=85
+    ? 'Jimmy shows strong control of most of the language reviewed from Sessions 1–5. The next step can focus on maintaining accuracy while increasing independence.'
+    : pct>=70
+    ? 'Jimmy shows good progress. A few structures or Mining English chunks still need targeted review before they become automatic.'
+    : 'The result suggests that some foundations from Sessions 1–5 should be recycled more often. Use the session breakdown to decide what to revisit first.';
+
+  const weak=[];
+  Object.entries(sessions).forEach(([s,v])=>{if(v.n && v.ok/v.n<.7)weak.push('Session '+s)});
+
+  document.getElementById('generalFeedback').innerHTML=`
+    <div class="feedback-grid">
+      <div class="feedback-card"><h4>Overall reading</h4><p>${msg}</p>
+        <p><b>Grammar:</b> ${gScore}/15 (${gPct}%)<br><b>Mining English:</b> ${mScore}/10 (${mPct}%)</p>
+        <p class="muted">This is a progress check based only on the content covered in Sessions 1–5.</p>
+      </div>
+      <div class="feedback-card"><h4>Session breakdown</h4>
+        <table class="result-table"><tr><th>Session</th><th>Score</th><th>Accuracy</th></tr>${rows}</table>
+        <div style="margin-top:10px"><b>Priority review</b><br>${weak.length?weak.map(x=>`<span class="tag">${x}</span>`).join(''):'<span class="muted">No session below the review threshold among answered items.</span>'}</div>
+      </div>
+    </div>`;
+}
+
+function makeDiscussion(){
+  const host=document.getElementById('discussionCards');host.innerHTML='';
+  discussion.forEach((d,i)=>{
+    const el=document.createElement('div');el.className='discussion-card';
+    el.innerHTML=`<div class="eyebrow">${d.t}</div><div class="prompt">${d.p}</div>
+      <div class="follow"><b>Support prompts</b><br>${d.f.join('<br>')}</div>
+      <div class="rubric">${['Grammar','Mining English','Accuracy','Independence'].map(k=>`
+        <div><label>${k}</label><select class="speak-score"><option value="">—</option>
+        <option value="1">1 · Needs support</option><option value="2">2 · Developing</option>
+        <option value="3">3 · Functional</option><option value="4">4 · Confident</option></select></div>`).join('')}</div>`;
+    host.appendChild(el);
+  });
+  document.querySelectorAll('.speak-score').forEach(s=>s.addEventListener('change',updateSpeaking));
+}
+
+function updateSpeaking(){
+  const vals=[...document.querySelectorAll('.speak-score')].map(x=>Number(x.value)).filter(Boolean);
+  if(!vals.length)return;
+  const avg=vals.reduce((a,b)=>a+b,0)/vals.length;
+  let msg=avg>=3.5?'Jimmy is using the reviewed language with good independence in this sample.'
+    :avg>=2.7?'Jimmy can communicate with functional control, although some prompts still help.'
+    :avg>=1.8?'Jimmy is developing control and benefits from guided prompts.'
+    :'Jimmy currently needs substantial support to reuse the reviewed language orally.';
+  document.getElementById('speakingSnapshot').textContent=`Current teacher rating: ${avg.toFixed(1)}/4. ${msg}`;
+}
+
+
+const printablePdfBase64 = "JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNSAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0NvbnRlbnRzIDEzIDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDEyIDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iago1IDAgb2JqCjw8Ci9CYXNlRm9udCAvU3ltYm9sIC9OYW1lIC9GMyAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL0NvbnRlbnRzIDE0IDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDEyIDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iago3IDAgb2JqCjw8Ci9Db250ZW50cyAxNSAwIFIgL01lZGlhQm94IFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4IF0gL1BhcmVudCAxMiAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKOCAwIG9iago8PAovQ29udGVudHMgMTYgMCBSIC9NZWRpYUJveCBbIDAgMCA1OTUuMjc1NiA4NDEuODg5OCBdIC9QYXJlbnQgMTIgMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjkgMCBvYmoKPDwKL0NvbnRlbnRzIDE3IDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDEyIDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iagoxMCAwIG9iago8PAovUGFnZU1vZGUgL1VzZU5vbmUgL1BhZ2VzIDEyIDAgUiAvVHlwZSAvQ2F0YWxvZwo+PgplbmRvYmoKMTEgMCBvYmoKPDwKL0F1dGhvciAoXChhbm9ueW1vdXNcKSkgL0NyZWF0aW9uRGF0ZSAoRDoyMDI2MTAwOTAwMjU1OSswMCcwMCcpIC9DcmVhdG9yIChcKHVuc3BlY2lmaWVkXCkpIC9LZXl3b3JkcyAoKSAvTW9kRGF0ZSAoRDoyMDI2MTAwOTAwMjU1OSswMCcwMCcpIC9Qcm9kdWNlciAoUmVwb3J0TGFiIFBERiBMaWJyYXJ5IC0gXChvcGVuc291cmNlXCkpIAogIC9TdWJqZWN0IChcKHVuc3BlY2lmaWVkXCkpIC9UaXRsZSAoXChhbm9ueW1vdXNcKSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iagoxMiAwIG9iago8PAovQ291bnQgNSAvS2lkcyBbIDQgMCBSIDYgMCBSIDcgMCBSIDggMCBSIDkgMCBSIF0gL1R5cGUgL1BhZ2VzCj4+CmVuZG9iagoxMyAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCAxMTIyCj4+CnN0cmVhbQpHYXUxLj8jUzFHJ1NjKU4vJ19dLGViSWwvMmktdWExc2ZWRl0pW04kanUsTHVVKlozUyxecWthUnMmTT1jRzNSLS0pbHNtcFwiJmRmLVB0NzdLIStzISciNiFqJlo/aEt1RloxN2lXO2JuOGBNZkZqTlJhJFJBOGRqYk9RblswNEY1ayk5OVE8OkMlVVEpZF1sYzpLMms8XzxKIVhVQ04wLzZBMGBQSkt1TUIoMnJtbkJtSyRIcyRMSiFkTDFOYEQ4SE45cDhYaSIoWCQzbk9eO0k1VFtgIyM6cG9XalVdcWs3WSJFNk1CVCk4RCtBIjojVWJ1YmVzPSFYLnVda204ZDwhYEU5SEVTLmdkISZFRFxyKi9lTilfQ3NgRjFlcGNibk5fXGtTPFNJUyJlaG0odFInUE9NUypyMy43WWIkYE5gQ2ZJTk9jSUw9bGh0Y0NMaUsrUm5eUGUpZVlFaUtiQ3JoXGk2bThHWzc0OU9rMCItaFc4PFRZK1ZpLVtDdD5GKzIwVSZQMWNlLkdMKlU6UnM7OUhfa2Y6OUJlS18vcW04JmpDJGpJL1x1WURoTmg9KDE2ZmsyOyhNVUtPTUlARk1sRiIxbkJjMFlvXF1yNU1LTG1oJjN0b2MsaEUhSFE1YkciUjBZbSVSQ3RlYV5dUUZjTG5XcFdaU1xhcCFXWXR0PkJjbyFzKWNPWVtXa2tMbyktZ0k6YFxnKWVhQHBGbkRrTzIpYm1PVz9IJyxSTEIySy05YkNvNCRSWm8iLmBBckk4SVJjQVBmaCNBVjJTQCFjQlNpZFxqZU1hNks9S2BkUidJW1hoZlwwUWY1RyY3JTlfP3A/IyUjb1wlcXQ+LVc+TU1tZnBMJldTZjJnTCpscV8iYnNyUiYoblI2KEEtciEvOSVocFdyYyRpSTMibiFkWUE1LV5vaWo3PE8vUUY2SGZnY0w5TChUNiFBcFU3JiZdVSVbI2opVzFaU0xfSy5lbmcmcl05TktcVTwvLjRgSWFuTW5NK28oLSpkTGBOVCg6TUJIVXFFOjJgWTRpLWktb0g2QSpQMkNKal41L2M3RnUkQzZWa202aW82ay82QnFWMVgiPipTWGlELzNPOjlUQ2AkPFU0IjdJUjNhdTthVHMySD5IMCRsR1ZHVVlbTTU0ak09LWM3azFzUlcjbnQoLTdMWDFDXTE4dVlhUTFvTyI2WEZdSjonSTVSZi8qIi9CKi0nc0JjPyl1T1t0cVxILFluIk5Vb2FVRzBkaExoU0VlQDtJWFpRYElRUkhDcV9xKSNALlpvL1pcayhMO1dbc0ZtWTw+KU8rbHMvPC8oTUJkPz9IWnIuTm5kTiojPzMxQUVWLlxvPVU4IipqV2UmYzxoIidYU10yZktSPE08J2xbbDlNSSgwM25Kc1lYKTpyTyFNaVFIQnRDRTprTTNCRlFiUFRRbVAtRUJzUFAuI24nQDUnYjBNNCgqbidPVkdWQS4vMCtRbDZsVlEifj5lbmRzdHJlYW0KZW5kb2JqCjE0IDAgb2JqCjw8Ci9GaWx0ZXIgWyAvQVNDSUk4NURlY29kZSAvRmxhdGVEZWNvZGUgXSAvTGVuZ3RoIDExODAKPj4Kc3RyZWFtCkdhdTEvPyNRMycnU2MpSi8nX0dMOHRAWi41anIwa09oMDgtQUJXZUAnYlBlJUJScl9VLVltRkdyMTpgOGxhISM/PF5VSEEhZmxnQmNNMWctMk1WUFtJIUFySSEvaDkyL2lbZU5mYz4lTidQJ0dHXUJuVk1hXU0sXitfPjdKYzRua1cwdS1iWS4qNyRTVGlESGVga1MuLCszbWcwVSxZbnVqNFE7W14yI1csZmJPIVlwJyhCQjFBS1pgUys9aSpyIWktbz1rPmIxQChXUmA5YUNVKCpZKVE+KVtrWE9BMDJ0QWppTFNra209IWNgKEExOSxZYDRsPUM8bSpFXE4zQEE7bWM7U2YwZjcnblBrImM3WyVhPT9RL0wza2E4JFkiKElpbkc0Uj44REhDYTFIOTxlYXRRT3VkX2NicmxFUy5vLSxTVXNxPlZsaGRuX3VLakw+Kjslb0pYSEYuSiQhWWNyLmJDS0VbU1xbSHFoMmBFXCJYYCVFSjxCMjk7Qm11LWwpQEJqQ1A6cTxEaHM7QzsjUSxcNS1fKiE2OFVzTE8hIi9xVlA6Q1lrQEVKRVVPcEVcVyY4ckdyTC40U3I/YzhhTjtEbCh1YWkqI1lDPjdrYzFpRCZpPChtc3A9VWtBNFojSyUuSnE4MmorZkchS1UhNl46Y2FoQ2UzY0AmLlxDI20sVSM2Y0xTZU1vUWkqcChyKUJvOCg+Umg7WF86KWY6JlEnU2UjajlPJipxQG9YOkZFJFNbNUhmI3FEUmZjIzxKZVlqSyxMc1w0Z2ZqTEspPyEkXVdEOGZYV1JRPGJtMGZEZiM7M0JzXWRMW1w7KU87OjdoYEpbLWppLE9cM1klKCdtOSk3Q2NWPEBwbktkVFBPaDVeO2ppZDVqbTMyXURHKi4nPEYsbUNMVTM1JDVuWCswYzNoL0xtcXJVS1BRYiVuNXA+OnRWZVZyRV8ubVZcYVxCN2NvTzBEKnQpYSpEK1YvWSthMGE4YC5ATCQ8LklfNSZzZFUuPilJaUNlR3JeXHVCRCNsaE9pS2NiIlNeM28+dXBCazg0L11MOE8mSFhsJGM8aigrdGNvXDBYS0Q1PVgxb1tkPiIlPjtPWjhALSRJPW9bPyNDOytTai4yL0Q5cl1Wc0FicEcwIzsrRTMsZktVNU1zIkJbKC4tQU4sO2pcT0pcTVZBPTVhdFNaKXJRQmRncF9uKFk6PT4tbUFzUyRscEJDLFU8ayFDYlw4dD1WVzhbWks0VyY2IjxrNm0uLFotPiVocCYxLzFDY1NSNiZVK0xManNBVVJvZ1w4OVFwTDI/OFxrOzBSYT89WCIqTF0razttcV1qb0lCYClLZihrPjJPYS5pbilWVmhSbS01NWo4SE0lWk4iR1JHazlhJDNqW15oaSVFWyFJPVFkP3JMMDZWJVImMjBEazE8YTFGVDBnLkwwb01oaUFLZj8mK0ZvMlFZTDQqRm0xJTtpUiwnKkJXJVVqaDliRG9aWCowUyo6M1loZShCPVVdbGxtZ1ltUS44I01DImM7QEYpM1RbSD1BcWpxTV9cMm8yKUlmUGVnLltwfj5lbmRzdHJlYW0KZW5kb2JqCjE1IDAgb2JqCjw8Ci9GaWx0ZXIgWyAvQVNDSUk4NURlY29kZSAvRmxhdGVEZWNvZGUgXSAvTGVuZ3RoIDQyMAo+PgpzdHJlYW0KR2F0VW1kOyROUCdTYylSJ2BZIUsoaXUuQTlzOTpIS29IUShmIjNZKSxoQSFgU1NfcERIaFxucERDVkQ/JmRUWTFQNChJbSJFIkglby5nRDswYTpQWHExcilwYVgjak45T19yI1s+QiZtYC5FMCk4USgqTF5nc0M/Kz5Ebi0pNTBhWkgibkchODIyMD8pSiFjIWtZOlgvLEhdUGw5J1w+VTk4NylDLWdAVzJeNEgvPGJCQStiPEwiPkYibVcuI3FlOzAwTGIkRjRMcCVoRUF0OUQza3ArXCRkbFBwYyQ2KFoyMkJHT3EuMW9gODovTzhoPzYkXU4pLDEhVz1pPVRHXiJMdDlbPXM1SXE/SVxEb3NoZjclQkMvLUYuIi4zUUptdCRLQHUrOT9YVmxDKThYZmdMVV5SIyVRJFpIcSZJIlVNX3FWJGMqQmdQMkhaMlVFUlFBMWtYXjphXydyOl4raidHIjpEPTkuJ2xPcEUkcW8nKyZHZTAjTHRQI1ssbCRYW19RPiZNbVZcLzopLlVtMGYxazJvUVNBJGhyO2NdOmBHdH4+ZW5kc3RyZWFtCmVuZG9iagoxNiAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCAxMjE0Cj4+CnN0cmVhbQpHYXVJNzsvYjJJJ0xxIU8vKzIwJyFFRFJHUGMyODBGLV44VT10RkBzakMnJjFgTStxOlAzQGVvJGo2Q3NdOzAiPm9iS1MtUHAoc0dMbDBPP2Mxc29RIkNoOVFtV0huV2JpXEVbJTA4ZSheJyk6cyM0bSVYMjhBcDYwb1FCIk9AU1BTNF5zKUIsKShoYUpnQ09EOi0kTGs+TThucW5FKSJaOzRNMiEjbFxySzA8WCMvWFw4biZlUTs3U01yOTUoPSkrXThyV04iITI5Y1VwOG40KiclP1FxMz8rcXBsJyVqWklydUw3Wj1uMyRRRjkiISU9ZERRRWo4cnRGIiZZVC8sZmQ0Wyx0O2o8Zk8pYGw+cW4kO2NgOHU9VnM1VFttJ0wpKChMN09jP0dfJz5XY2VQNV1qSlRPbkw1QDlQS15FWEBiP2tpX2xpbm5TZltDKFghRGxcUnVLNmZjNWZINSxuLGRLZ0o/IkQ6R2c+U0QtTG1PaHNKKHFaL2UuQS1BaE4mNDBlYTBsKzJOX2hIIkFnSldYZSZnUCNjQVRJcCI3PTRGRmU8RFlsWiwnRiZxMVc6Llc2LSZdP2AkJ1ZhaHInN3FoU048OyYibSo+PlZAOVNPTyxdPmJRQE1dYTdbbS80OmUybT4kQjxVVF8rRjkpRmpTbmZaN0tBV3E/SE1FPE1qQ1YuK2M+WlI6IUlNcmgvLkBOaUY9bzY9MScwNk9WKEFNOWFcak8rInImJ1pZTy4sYU9dY0pRZWo6ZUZFNDI4bVpcSkxccz5fJGh0QyViKSZEMEJGLChnJzBZJyxPbWwmKD5gIypsJV1RRFIsZ0JpZG47O19QNWZzNmZoOz43Q3NiQGxMNl9gL1R1Yik1KGIiaEZgZ1hULFNeSGdQOHVeTUBEQUpLZzJtcjpccUUsKCsmVWhFckExKyhkbiImPU5aST1kVDhIWnIlPVg5bHQzSE85SGVrW1RDUCUjRFtkVGIoQEdzTTRPRT8jcio0M01RJDc8TmJdYSsmQTNYKyc2blpDRitFJy4ycjgzUVtuVFBNPyYwQCZeY1hjLCpcN2I1UzxbZk0saCVmVlxSMEFWJWlCNlcuW15XbD1nazhZRTJsXXJfQ19YQ1lbaWxNWEJwQl5GaUJiRThmI01ALDlKaTJIUkNCSTlMTGk5Pz9FLV1cT203aEo8Nk05JWNsMyNkaSYsRWtULE5XSkAkO0pII2FKLVI8Y0xxXkMmclREcGcjSixiKzsjWjxXNVNNUUUxVGRJKGIrXC1qW1ptPSE2PExKREZ1VChMN10zbl8rZSM9WF0xZWdTbyhEW0BZQE8pWUIzPSw0OE0uJ2JHUyFhY1Q2Zy9DLlRyIj9tVzopdVtXcTgwNWdyIVs7IUxbKE5WJmVJLjE9VzhgSEkrMjZCWFYkZC1ZIWkqckwlVzh0USgwOklnMktlIkphaGhKUEJbUmx0NlQwQUA3PGc2R2s9JDdDRiRtJ25xZDxqaG9vKVJtY0c7SmtLMV5hNEA1cFRpQFBBWnFlKjlzaFpJbWxDLUQ5QD8nRVhuMFxbJk5uRlpSPm1KNTcpQiFvXVE9R1oxb0xcR3JTNDpQQTlAYVxcVV1VUSE4VUhbclZ+PmVuZHN0cmVhbQplbmRvYmoKMTcgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggNzQ3Cj4+CnN0cmVhbQpHYiE8TT8jUzFHJ1NjKVIvJ2Q2QVJWMFlfRUByXF4mcjtBUiwmbVheYikyTiZnOClZOSdiV2EmajdJdTQmQFdrRkBdXj41M0RKRG9mTUNpZlRfTipjRUFAVjVWSnBcJko0NVBgISMlYWNxQU1pZmk3aFhGZEN0XFJbRCNCPVA9ZD5KLDFfPyUrPlQqKEpORVA/QkJxY3BNJ09wPDIpKVtpInJGJGlUMz49M2RQXzlhZS0rV3MxOkljL15lXUpeRnVLM3VtdTI9ci5OUGBkZmo7RDtFV2JrPVVnRzZtbEJDW3VCYk1VNUxpbEN1OixJLUYiaUI7Y0sqWy5pMGsrIkcuIUVCcCtuQGBzZj9wVE03WFw+U0c3M0ZMJSM5WVZqYjxtQFQmODJLUThyZFY1PVIsVzJwOVkhWS1ATFxbUjMqQG0qYTsiaXJIbXRgRjBxZm1yWSlAJTNNQUVnZVVNIlFraWcsRm5YS2hFLFZVUlI2LCgzLWspLEk+KnNITzNaKnB1LGZoOmIlTXJzaXFcOGxjImlHVW02MT5aTCIrNV01YDI8ZWFcRiguZkNhMzE9LEVpIVxTbiFLYTgkSnEhYCFaV0BAO0wxaVc3WmhFUFovalBuJGdzPj5CXWRpSFRNUVhYJnRxQ20kSFIzKnN1XVZaRHRZRHJEZy8kPmoxWSlBQUxpN1U4TTZFbkE6VCQiUmRjVXFIS0c3PEIlYC5RTG41MVE+VVJlN3EsU3VgMD9nIkBYM1JEbW5rQE8tTjhiWDtfQnMtJWxWYyJsQCpKW20yQ3QyUnA0KjJyUz4mYiVfPTVsOltfJXQ+S1dQcyU4UlIzbnQrajdoUUZ0XEtMRGlMaCsmTWJhYE5tJlo/dF1RMmt0a0E4bzBKIi9aMnFCcV4uZmpBZER0dVIlVk4wRGRnU0c2clNZRmxWSy1KPmxGWzZHcm4nKEIlMUZRY2krNidlJzxPKk8wcEBsaCVQLHQ0aS0lbWwrNUtwfj5lbmRzdHJlYW0KZW5kb2JqCnhyZWYKMCAxOAowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwNjEgMDAwMDAgbiAKMDAwMDAwMDExMiAwMDAwMCBuIAowMDAwMDAwMjE5IDAwMDAwIG4gCjAwMDAwMDAzMzEgMDAwMDAgbiAKMDAwMDAwMDUzNiAwMDAwMCBuIAowMDAwMDAwNjEzIDAwMDAwIG4gCjAwMDAwMDA4MTggMDAwMDAgbiAKMDAwMDAwMTAyMyAwMDAwMCBuIAowMDAwMDAxMjI4IDAwMDAwIG4gCjAwMDAwMDE0MzMgMDAwMDAgbiAKMDAwMDAwMTUwMyAwMDAwMCBuIAowMDAwMDAxNzg0IDAwMDAwIG4gCjAwMDAwMDE4NjggMDAwMDAgbiAKMDAwMDAwMzA4MiAwMDAwMCBuIAowMDAwMDA0MzU0IDAwMDAwIG4gCjAwMDAwMDQ4NjUgMDAwMDAgbiAKMDAwMDAwNjE3MSAwMDAwMCBuIAp0cmFpbGVyCjw8Ci9JRCAKWzxlZjIxN2ZkMTBiMmVlMzQwM2ZmZjc3ODRlNDMzOWRjYj48ZWYyMTdmZDEwYjJlZTM0MDNmZmY3Nzg0ZTQzMzlkY2I+XQolIFJlcG9ydExhYiBnZW5lcmF0ZWQgUERGIGRvY3VtZW50IC0tIGRpZ2VzdCAob3BlbnNvdXJjZSkKCi9JbmZvIDExIDAgUgovUm9vdCAxMCAwIFIKL1NpemUgMTgKPj4Kc3RhcnR4cmVmCjcwMDkKJSVFT0YK";
+
+function pdfBlob(){
+  const binary = atob(printablePdfBase64);
+  const bytes = new Uint8Array(binary.length);
+  for(let i=0;i<binary.length;i++) bytes[i]=binary.charCodeAt(i);
+  return new Blob([bytes],{type:'application/pdf'});
+}
+
+function downloadPrintable(){
+  const url=URL.createObjectURL(pdfBlob());
+  const a=document.createElement('a');
+  a.href=url;
+  a.download='Jimmy_Assessment_Sessions_1_5_Printable.pdf';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+function printPrintable(){
+  const url=URL.createObjectURL(pdfBlob());
+  const w=window.open(url,'_blank');
+  if(!w){alert('Please allow pop-ups to open the printable PDF.');URL.revokeObjectURL(url);return;}
+  setTimeout(()=>URL.revokeObjectURL(url),60000);
+}
+
+function resetAssessment(){
+  state={g:{},m:{}};
+  makeQuestions(grammar,'grammarQuestions','g');
+  makeQuestions(mining,'miningQuestions','m');
+  document.getElementById('globalFill').style.width='0%';
+  document.getElementById('scoreNow').textContent='0';
+  document.getElementById('percentNow').textContent='0%';
+  document.getElementById('generalFeedback').innerHTML='';
+  showPanel('grammar');
+}
+
+document.getElementById('downloadPrintable').addEventListener('click',downloadPrintable);
+document.getElementById('downloadPrintableResults').addEventListener('click',downloadPrintable);
+document.getElementById('printPrintable').addEventListener('click',printPrintable);
+
+makeQuestions(grammar,'grammarQuestions','g');
+makeQuestions(mining,'miningQuestions','m');
+makeDiscussion();
+</script>
+</body>
+</html>
